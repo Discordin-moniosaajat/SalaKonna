@@ -16,11 +16,12 @@ const client = new Client({
 
 require('dotenv').config();
 
-client.on('ready', () =>{
+client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}`)
 
-    client.user.setActivity(`B`,{
-        type: ActivityType.Listening
+    client.user.setActivity({
+        name: `how to develop a bot :)`,
+        type: ActivityType.Watching
     });
 
     client.user.setStatus('online')
