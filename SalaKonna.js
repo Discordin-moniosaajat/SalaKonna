@@ -33,6 +33,21 @@ client.on('ready', () => {
     client.user.setStatus('online')
 });
 
+//responding to commands
+client.on('interactionCreate', (interaction) => {
+    if (interaction.isChatInputCommand()) {
+        if (interaction.commandName === 'help') {
+            console.log("help command used");
+            interaction.reply({
+                //if you want a custom emoji in the message, you'll have to get the name and the id,
+                //you can get this by typing \:pensiveorange: in a discord chat and pressing enter
+                content: "We don't have answers for you yet... <:pensiveorange:1019734832508579850>",
+            });
+        }
+    }
+})
+
+//making commands and logging in        
 async function main() {
     const commands = [
         {
