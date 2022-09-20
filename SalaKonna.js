@@ -1,5 +1,11 @@
 const { REST } = require('@discordjs/rest');
-const { Client, GatewayIntentBits, Partials, ActivityType, Routes } = require('discord.js')
+const { 
+    Client, 
+    GatewayIntentBits, 
+    Partials, 
+    ActivityType, 
+    Routes 
+} = require('discord.js');
 
 const client = new Client({
     intents: [ /*https://discord-api-types.dev/api/discord-api-types-v10/enum/GatewayIntentBits */
@@ -43,9 +49,25 @@ client.on('interactionCreate', (interaction) => {
                 //you can get this by typing \:pensiveorange: in a discord chat and pressing enter
                 content: "We don't have answers for you yet... <:pensiveorange:1019734832508579850>",
             });
+        } else if (interaction.commandName === 'close') {
+            console.log("close command used");
+            process.exit();
         }
     }
-})
+});
+
+client.on('messageCreate', (interaction) => {
+
+    if (interaction.author == client.user) return;
+
+    if (interaction.channelId === '1021447723825774613') {
+        var target_channel = client.channels.resolve('1021447678070100119');
+        target_channel.send(interaction);
+    } else if (interaction.channelId === '1021447678070100119') {
+        var target_channel = client.channels.resolve('1021447723825774613');
+        target_channel.send(interaction);
+    }
+});
 
 //making commands and logging in        
 async function main() {
@@ -53,6 +75,10 @@ async function main() {
         {
             name: "help",
             description: "How to get started with the bot"
+        },
+        {
+            name: "close",
+            description: "Shuts down the node.js server"
         }
     ];
     try {
