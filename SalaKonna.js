@@ -63,14 +63,14 @@ client.on('messageCreate', (interaction) => {
 
     // Setting up the source channel
     // and the target channel
-    if (interaction.channelId === '1021447723825774613') {
-        const target_channel = client.channels.resolve('1021447678070100119');
+    if (interaction.channelId === '1019734223843774554') {
+        const target_channel = client.channels.resolve('1021710965777117184');
         target_channel.send(interaction);
 
     // This is the same thing
     // but the other way around
-    } else if (interaction.channelId === '1021447678070100119') {
-        const target_channel = client.channels.resolve('1021447723825774613');
+    } else if (interaction.channelId === '1021710965777117184') {
+        const target_channel = client.channels.resolve('1019734223843774554');
         target_channel.send(interaction);
     }
 });
