@@ -86,6 +86,7 @@ async function main() {
         await rest.put(Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID), {
             body: commands,
         });
+        //yes, the login was moved here, this can be reconsidered since i don't know where it's supposed to go
         client.login(TOKEN);
     } catch (err) {
         console.log(err);
