@@ -51,8 +51,11 @@ client.on('interactionCreate', (interaction) => {
             });
         } else if (interaction.commandName === 'write') {
             message = interaction.options.getString("message")
-            pseudoName = "Sun Mutsis" //placeholder, to be edited
+            //pseudoName = "Sun Mutsis" //placeholder, to be edited
 
+            const pseudoNames = ['Blue', 'Red', 'Green', 'Yellow', 'Orange', 'Purple'];
+            const pseudoName = pseudoNames[Math.floor(Math.random() * pseudoNames.length)]; // randomly picks 1 from the pseudoNames array
+            
             //send the message to a public channel
             const targetChannel = client.channels.resolve('1021710965777117184') //bottispämmi 2
             targetChannel.send(`**${pseudoName}** says:\n> ${message}`) //might make this an embed later on
