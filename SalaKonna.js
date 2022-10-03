@@ -49,6 +49,19 @@ client.on('interactionCreate', (interaction) => {
                 //you can get this by typing \:pensiveorange: in a discord chat and pressing enter
                 content: "We don't have answers for you yet... <:pensiveorange:1019734832508579850>",
             });
+        } else if (interaction.commandName === 'write') {
+            message = interaction.options.getString("message")
+            pseudoName = "Sun Mutsis" //placeholder, to be edited
+
+            //send the message to a public channel
+            const targetChannel = client.channels.resolve('1021710965777117184') //bottispämmi 2
+            targetChannel.send(`**${pseudoName}** says:\n> ${message}`) //might make this an embed later on
+
+            interaction.reply({
+                content: "Message sent!",
+                //ephemeral: true //makes the reply only seen by the one using the command
+            });
+            
         } else if (interaction.commandName === 'close') {
             console.log("close command used");
             process.exit();
@@ -64,14 +77,14 @@ client.on('messageCreate', (interaction) => {
     // Setting up the source channel
     // and the target channel
     if (interaction.channelId === '1019734223843774554') {
-        const target_channel = client.channels.resolve('1021710965777117184');
-        target_channel.send(interaction);
+        const targetChannel = client.channels.resolve('1021710965777117184');
+        targetChannel.send(interaction);
 
     // This is the same thing
     // but the other way around
     } else if (interaction.channelId === '1021710965777117184') {
-        const target_channel = client.channels.resolve('1019734223843774554');
-        target_channel.send(interaction);
+        const targetChannel = client.channels.resolve('1019734223843774554');
+        targetChannel.send(interaction);
     }
 });
 
@@ -81,6 +94,18 @@ async function main() {
         {
             name: "help",
             description: "How to get started with the bot"
+        },
+        {
+            name: "write",
+            description: "write anonymously on a public channel",
+            options: [
+                {
+                    name: "message",
+                    description: "content of the message you want to post",
+                    type: 3,
+                    required: true
+                }
+            ]
         },
         {
             name: "close",
