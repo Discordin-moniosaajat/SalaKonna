@@ -63,11 +63,7 @@ client.on('interactionCreate', (interaction) => {
             interaction.reply({
                 content: "Message sent!",
                 //ephemeral: true //makes the reply only seen by the one using the command
-            });
-            
-        } else if (interaction.commandName === 'close') {
-            console.log("close command used");
-            process.exit();
+            });    
         }
     }
 });
@@ -110,10 +106,6 @@ async function main() {
                 }
             ]
         },
-        {
-            name: "close",
-            description: "Shuts down the node.js server"
-        }
     ];
     try {
         console.log('Started refreshing application (/) commands.');
