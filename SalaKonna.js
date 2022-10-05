@@ -6,6 +6,8 @@ const {
     ActivityType, 
     Routes 
 } = require('discord.js');
+const helpCommand = require("./commands/help.js");
+const postCommand = require('./commands/post.js');
 
 const client = new Client({
     intents: [ /*https://discord-api-types.dev/api/discord-api-types-v10/enum/GatewayIntentBits */
@@ -49,7 +51,7 @@ client.on('interactionCreate', (interaction) => {
                 //you can get this by typing \:pensiveorange: in a discord chat and pressing enter
                 content: "We don't have answers for you yet... <:pensiveorange:1019734832508579850>",
             });
-        } else if (interaction.commandName === 'write') {
+        } else if (interaction.commandName === 'post') {
             message = interaction.options.getString("message")
             //pseudoName = "Sun Mutsis" //placeholder, to be edited
 
@@ -61,7 +63,7 @@ client.on('interactionCreate', (interaction) => {
             targetChannel.send(`**${pseudoName}** says:\n> ${message}`) //might make this an embed later on
 
             interaction.reply({
-                content: "Message sent!",
+                content: `You wrote:\n> ${message}`,
                 //ephemeral: true //makes the reply only seen by the one using the command
             });    
         }
@@ -90,22 +92,8 @@ client.on('messageCreate', (interaction) => {
 //making commands and logging in        
 async function main() {
     const commands = [
-        {
-            name: "help",
-            description: "How to get started with the bot"
-        },
-        {
-            name: "write",
-            description: "write anonymously on a public channel",
-            options: [
-                {
-                    name: "message",
-                    description: "content of the message you want to post",
-                    type: 3,
-                    required: true
-                }
-            ]
-        },
+        helpCommand,
+        postCommand,
     ];
     try {
         console.log('Started refreshing application (/) commands.');
