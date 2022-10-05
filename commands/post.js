@@ -1,14 +1,13 @@
-const postCommand = {
-    name: "post",
-    description: "post anonymously on a public channel",
-    options: [
-        {
-            name: "message",
-            description: "content of the message you want to post",
-            type: 3,
-            required: true
-        }
-    ]
-}
+const { SlashCommandBuilder } = require('discord.js');
 
-module.exports = postCommand
+const postCommand = new SlashCommandBuilder()
+    .setName("post")
+    .setDescription("post anonymously on a public channel")
+    .addStringOption((option) =>
+        option
+            .setName("message")
+            .setDescription("content of the message you want to post")
+            .setRequired(true)
+    )
+
+module.exports = postCommand.toJSON();

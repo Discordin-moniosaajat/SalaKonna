@@ -1,6 +1,7 @@
-const helpCommand = {
-    name: "help",
-    description: "How to get started with the bot"
-}
+const { SlashCommandBuilder } = require('discord.js');
 
-module.exports = helpCommand;
+const helpCommand = new SlashCommandBuilder()
+    .setName("help")
+    .setDescription("How to get started with the bot")
+
+module.exports = helpCommand.toJSON();

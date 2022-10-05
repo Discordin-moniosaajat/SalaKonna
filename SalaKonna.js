@@ -1,3 +1,4 @@
+const fs = require('node:fs');
 const { REST } = require('@discordjs/rest');
 const { 
     Client, 
@@ -46,14 +47,16 @@ client.on('interactionCreate', (interaction) => {
     if (interaction.isChatInputCommand()) {
         if (interaction.commandName === 'help') {
             console.log("help command used");
+
             interaction.reply({
                 //if you want a custom emoji in the message, you'll have to get the name and the id,
                 //you can get this by typing \:pensiveorange: in a discord chat and pressing enter
                 content: "We don't have answers for you yet... <:pensiveorange:1019734832508579850>",
             });
         } else if (interaction.commandName === 'post') {
+            console.log("post command used");
+
             message = interaction.options.getString("message")
-            //pseudoName = "Sun Mutsis" //placeholder, to be edited
 
             const pseudoNames = ['Blue', 'Red', 'Green', 'Yellow', 'Orange', 'Purple'];
             const pseudoName = pseudoNames[Math.floor(Math.random() * pseudoNames.length)]; // randomly picks 1 from the pseudoNames array
@@ -70,7 +73,7 @@ client.on('interactionCreate', (interaction) => {
     }
 });
 
-client.on('messageCreate', (interaction) => {
+/* client.on('messageCreate', (interaction) => {
 
     // Ignore messages sent by the bot
     if (interaction.author == client.user) return;
@@ -87,7 +90,7 @@ client.on('messageCreate', (interaction) => {
         const targetChannel = client.channels.resolve('1019734223843774554');
         targetChannel.send(interaction);
     }
-});
+}); */
 
 //making commands and logging in        
 async function main() {
@@ -105,6 +108,6 @@ async function main() {
     } catch (err) {
         console.log(err);
     }
-  }
+}
 
 main();
