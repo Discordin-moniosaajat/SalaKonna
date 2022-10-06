@@ -5,7 +5,8 @@ const {
     GatewayIntentBits, 
     Partials, 
     ActivityType, 
-    Routes 
+    Routes,
+    Collection
 } = require('discord.js');
 const helpCommand = require("./commands/help.js");
 const postCommand = require('./commands/post.js');
@@ -32,6 +33,21 @@ const GUILD_ID = process.env.GUILD_ID;
 
 const rest = new REST({ version: '10' }).setToken(TOKEN);
 
+//gathering all of the commands
+client.commands = new Collection();
+commandsArray = []
+
+const commandFiles = fs.readdirSync("./commands").filter(file => file.endsWith('.js'));
+console.log(commandFiles);
+
+for (const file of commandFiles) {
+	const command = require(`./commands/${file}`);
+	// Set a new item in the Collection
+	// With the key as the command name and the value as the exported module
+	client.commands.set(command.data.name, command);
+    commandsArray.push(command.data.toJSON());
+}
+
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}`)
 
@@ -43,33 +59,20 @@ client.on('ready', () => {
 });
 
 //responding to commands
-client.on('interactionCreate', (interaction) => {
+client.on('interactionCreate', async interaction => {
+    //gets the command from the collection saved in client without having to have a lot of if/else statements
     if (interaction.isChatInputCommand()) {
-        if (interaction.commandName === 'help') {
-            console.log("help command used");
+        const command = client.commands.get(interaction.commandName);
+    //returns if there's no command found
+	if (!command) return;
 
-            interaction.reply({
-                //if you want a custom emoji in the message, you'll have to get the name and the id,
-                //you can get this by typing \:pensiveorange: in a discord chat and pressing enter
-                content: "We don't have answers for you yet... <:pensiveorange:1019734832508579850>",
-            });
-        } else if (interaction.commandName === 'post') {
-            console.log("post command used");
-
-            message = interaction.options.getString("message")
-
-            const pseudoNames = ['Blue', 'Red', 'Green', 'Yellow', 'Orange', 'Purple'];
-            const pseudoName = pseudoNames[Math.floor(Math.random() * pseudoNames.length)]; // randomly picks 1 from the pseudoNames array
-            
-            //send the message to a public channel
-            const targetChannel = client.channels.resolve('1021710965777117184') //bottispämmi 2
-            targetChannel.send(`**${pseudoName}** says:\n> ${message}`) //might make this an embed later on
-
-            interaction.reply({
-                content: `You wrote:\n> ${message}`,
-                //ephemeral: true //makes the reply only seen by the one using the command
-            });    
-        }
+    //executing the function inside the command file
+    try {
+		await command.execute(interaction, client);
+	} catch (error) {
+		console.error(error);
+	    interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+	}
     }
 });
 
@@ -94,14 +97,10 @@ client.on('interactionCreate', (interaction) => {
 
 //making commands and logging in        
 async function main() {
-    const commands = [
-        helpCommand,
-        postCommand,
-    ];
     try {
         console.log('Started refreshing application (/) commands.');
         await rest.put(Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID), {
-            body: commands,
+            body: commandsArray,
         });
         //yes, the login was moved here, this can be reconsidered since i don't know where it's supposed to go
         client.login(TOKEN);
