@@ -33,6 +33,17 @@ const GUILD_ID = process.env.GUILD_ID;
 
 const rest = new REST({ version: '10' }).setToken(TOKEN);
 
+//database connection
+const { connect, default: mongoose } = require("mongoose");
+mongoose.connect(process.env.DATABASETOKEN, {
+    })
+    .then( () => {
+        console.log('Connected to the DB!');
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+
 //gathering all of the commands
 client.commands = new Collection();
 commandsArray = []
