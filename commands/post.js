@@ -30,7 +30,7 @@ module.exports = {
 
         // send interaction to log channel
         const logChannel = client.channels.resolve('1024957345761083423') 
-        logChannel.send(` User: ${interaction.user.tag}, ${interaction.user.username} \n ID:(${interaction.user.id})\n Pseudo name: ${pseudoName} \n From channel #${interaction.channel.name} `)
+        logChannel.send(` User: ${interaction.user.tag}, ${interaction.user.username} \nUser ID:(${interaction.user.id})\nPseudo name: ${pseudoName} \nFrom channel #${interaction.channel.name} \n> ${message}`)
         console.log()
         
     }
