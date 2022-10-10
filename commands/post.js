@@ -1,6 +1,14 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { execute } = require('./help');
 
+let pseudoNames = ['Blue', 'Red', 'Green', 'Yellow', 'Orange', 'Purple'];
+
+function removeUsedPseudoName(pseudoNames, pseudoName) {
+    return pseudoNames.filter(function(ele) {
+        return ele != pseudoName;
+    });
+};
+
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("post")
@@ -16,9 +24,9 @@ module.exports = {
 
         message = interaction.options.getString("message")
 
-        const pseudoNames = ['Blue', 'Red', 'Green', 'Yellow', 'Orange', 'Purple'];
-        const pseudoName = pseudoNames[Math.floor(Math.random() * pseudoNames.length)]; // randomly picks 1 from the pseudoNames array
-        
+        let pseudoName = pseudoNames[Math.floor(Math.random() * pseudoNames.length)]; // randomly picks 1 from the pseudoNames array
+        pseudoNames = removeUsedPseudoName(pseudoNames, pseudoName); // removes the picked pseudoName from the pseudoNames array (using the removeUsedPseudoName function)
+
         //send the message to a public channel
         const targetChannel = client.channels.resolve('1021710965777117184') //bottispämmi 2
         targetChannel.send(`**${pseudoName}** says:\n> ${message}`) //might make this an embed later on
