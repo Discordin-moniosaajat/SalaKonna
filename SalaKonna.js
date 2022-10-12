@@ -10,6 +10,7 @@ const {
 } = require('discord.js');
 const helpCommand = require("./commands/help.js");
 const postCommand = require('./commands/post.js');
+const Test = require('./models/test');
 
 const client = new Client({
     intents: [ /*https://discord-api-types.dev/api/discord-api-types-v10/enum/GatewayIntentBits */
@@ -35,7 +36,7 @@ const rest = new REST({ version: '10' }).setToken(TOKEN);
 
 //database connection
 const { connect, default: mongoose } = require("mongoose");
-mongoose.connect(process.env.DATABASETOKEN, {
+    mongoose.connect(process.env.DATABASETOKEN, {
     })
     .then( () => {
         console.log('Connected to the DB!');
@@ -85,6 +86,21 @@ client.on('interactionCreate', async interaction => {
 	}
     }
 });
+
+/*mongoose and mongodb sandbox testing
+//just ignore this
+
+//create test and data
+
+const handleNewTest = async () => {
+        const test = await Test.create({
+            title: 'new test',
+            tdata: 'this is a test'
+        });
+        console.log(test);
+};
+handleNewTest();
+*/
 
 /* client.on('messageCreate', (interaction) => {
 
