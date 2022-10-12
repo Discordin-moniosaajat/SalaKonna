@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 //Create schema and model for testing
+//seems to work
 const testSchema = new Schema ({
     title: {
         type: String,
