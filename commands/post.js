@@ -22,6 +22,8 @@ module.exports = {
     async execute(interaction, client) {
         console.log("post command used");
 
+        console.log(interaction);
+
         message = interaction.options.getString("message")
 
         let pseudoName = pseudoNames[Math.floor(Math.random() * pseudoNames.length)]; // randomly picks 1 from the pseudoNames array
@@ -38,8 +40,7 @@ module.exports = {
 
         // send interaction to log channel
         const logChannel = client.channels.resolve('1024957345761083423') 
-        logChannel.send(` User: ${interaction.user.tag}, ${interaction.user.username} \nUser ID:(${interaction.user.id})\nPseudo name: ${pseudoName} \nFrom channel #${interaction.channel.name} \n> ${message}`)
-        console.log()
+        logChannel.send(` User: ${interaction.member.nickname} (${interaction.user.tag}) \nUser ID:(${interaction.user.id})\nPseudo name: ${pseudoName} \nFrom channel #${interaction.channel.name} \n> ${message}`)
         
     }
 }

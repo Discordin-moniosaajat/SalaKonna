@@ -51,6 +51,7 @@ commandsArray = []
 
 const commandFiles = fs.readdirSync("./commands").filter(file => file.endsWith('.js'));
 
+//handling commands
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
 	// Set a new item in the Collection
