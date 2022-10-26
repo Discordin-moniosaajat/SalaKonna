@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { EmbedBuilder } = require('discord.js');
+const { execute } = require('./help');
 
 let pseudoNames = ['Blue', 'Red', 'Green', 'Yellow', 'Orange', 'Purple'];
 
