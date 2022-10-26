@@ -3,8 +3,7 @@ const { REST } = require('@discordjs/rest');
 const { 
     Client, 
     GatewayIntentBits, 
-    Partials, 
-    ActivityType, 
+    Partials,
     Routes,
     Collection
 } = require('discord.js');
@@ -39,7 +38,7 @@ commandsArray = []
 
 const commandFiles = fs.readdirSync("./commands").filter(file => file.endsWith('.js'));
 
-//handling commands
+//saving commands to client and the array
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
 	// Set a new item in the Collection
@@ -48,54 +47,17 @@ for (const file of commandFiles) {
     commandsArray.push(command.data.toJSON());
 }
 
-client.on('ready', () => {
-    console.log(`Logged in as ${client.user.tag}`)
+// Event handling
+// All of the events (code starting with "client.on") can be found in the events folder
+const eventFiles = fs.readdirSync("./events").filter(file => file.endsWith('.js'));
 
-    client.user.setActivity({
-        name: `how to develop a bot :)`,
-        type: ActivityType.Watching
-    });
-    client.user.setStatus('online')
-});
+for (const file of eventFiles) {
+	const event = require(`./events/${file}`);
+	
+	client.on(event.name, (...args) => event.execute(...args));
+}
 
-//responding to commands
-client.on('interactionCreate', async interaction => {
-    //gets the command from the collection saved in client without having to have a lot of if/else statements
-    if (interaction.isChatInputCommand()) {
-        const command = client.commands.get(interaction.commandName);
-    //returns if there's no command found
-	if (!command) return;
-
-    //executing the function inside the command file
-    try {
-		await command.execute(interaction);
-	} catch (error) {
-		console.error(error);
-	    interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
-	}
-    }
-});
-
-/* client.on('messageCreate', (interaction) => {
-
-    // Ignore messages sent by the bot
-    if (interaction.author == client.user) return;
-
-    // Setting up the source channel
-    // and the target channel
-    if (interaction.channelId === '1019734223843774554') {
-        const targetChannel = client.channels.resolve('1021710965777117184');
-        targetChannel.send(interaction);
-
-    // This is the same thing
-    // but the other way around
-    } else if (interaction.channelId === '1021710965777117184') {
-        const targetChannel = client.channels.resolve('1019734223843774554');
-        targetChannel.send(interaction);
-    }
-}); */
-
-//making commands and logging in        
+//uploading commands and logging in        
 async function main() {
     try {
         console.log('Started refreshing application (/) commands.');
