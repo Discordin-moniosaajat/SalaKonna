@@ -20,10 +20,11 @@ module.exports = {
                 .setDescription("content of the message you want to post")
                 .setRequired(true)
         ),
-    async execute(interaction, client) {
+    async execute(interaction) {
         console.log("post command used");
 
-        console.log(interaction);
+        //apparently you can also get the client from the interaction and you don't have to pass it in as a separate parameter
+        const client = interaction.client;
 
         message = interaction.options.getString("message")
 

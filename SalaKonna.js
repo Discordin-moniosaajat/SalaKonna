@@ -8,8 +8,7 @@ const {
     Routes,
     Collection
 } = require('discord.js');
-const helpCommand = require("./commands/help.js");
-const postCommand = require('./commands/post.js');
+
 const database = require('./database.js')
 
 const client = new Client({
@@ -69,7 +68,7 @@ client.on('interactionCreate', async interaction => {
 
     //executing the function inside the command file
     try {
-		await command.execute(interaction, client);
+		await command.execute(interaction);
 	} catch (error) {
 		console.error(error);
 	    interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
