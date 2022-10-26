@@ -77,21 +77,6 @@ client.on('interactionCreate', async interaction => {
     }
 });
 
-/*mongoose and mongodb sandbox testing
-//just ignore this
-
-//create test and data
-
-const handleNewTest = async () => {
-        const test = await Test.create({
-            title: 'new test',
-            tdata: 'this is a test'
-        });
-        console.log(test);
-};
-handleNewTest();
-*/
-
 /* client.on('messageCreate', (interaction) => {
 
     // Ignore messages sent by the bot
