@@ -1,6 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { EmbedBuilder } = require('discord.js');
-const { execute } = require('./help');
 
 let pseudoNames = ['Blue', 'Red', 'Green', 'Yellow', 'Orange', 'Purple'];
 
@@ -41,9 +40,6 @@ module.exports = {
 
         // send interaction to log channel
         const logChannel = client.channels.resolve('1024957345761083423') 
-        //old version
-        /*logChannel.send(` User: ${interaction.member.nickname} (${interaction.user.tag}) \nUser ID:(${interaction.user.id})\nPseudo name: ${pseudoName} \nFrom channel #${interaction.channel.name} \n> ${message}`)*/
-        
         // Embedded log message
          const logEmbed = new EmbedBuilder()
          .setColor(0x34eb49)
