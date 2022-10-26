@@ -10,7 +10,7 @@ const {
 } = require('discord.js');
 const helpCommand = require("./commands/help.js");
 const postCommand = require('./commands/post.js');
-const Test = require('./models/test');
+const database = require('./database.js')
 
 const client = new Client({
     intents: [ /*https://discord-api-types.dev/api/discord-api-types-v10/enum/GatewayIntentBits */
@@ -33,17 +33,6 @@ const CLIENT_ID = process.env.CLIENT_ID;
 const GUILD_ID = process.env.GUILD_ID;
 
 const rest = new REST({ version: '10' }).setToken(TOKEN);
-
-//database connection
-const { connect, default: mongoose } = require("mongoose");
-    mongoose.connect(process.env.DATABASETOKEN, {
-    })
-    .then( () => {
-        console.log('Connected to the DB!');
-    })
-    .catch((err) => {
-        console.log(err);
-    });
 
 //gathering all of the commands
 client.commands = new Collection();
