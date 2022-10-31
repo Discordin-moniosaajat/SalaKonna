@@ -1,5 +1,7 @@
 // This is for handling slash commands
 
+const button1 = require("../buttons/button1.js");
+
 module.exports = {
     name: "interactionCreate",
     async execute(interaction) {
@@ -15,6 +17,15 @@ module.exports = {
             } catch (error) {
                 console.error(error);
                 interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+            }
+        } else if (interaction.isButton()) {
+            if (interaction.customId === 'button1') {
+                try {
+                    await button1.execute(interaction);
+                } catch (error) {
+                    console.error(error);
+                    interaction.reply({ content: 'There was an error while executing this button!', ephemeral: true });
+                }
             }
         }
     }
