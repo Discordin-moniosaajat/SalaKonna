@@ -42,19 +42,19 @@ module.exports = {
         // send interaction to log channel
         const logChannel = client.channels.resolve('1024957345761083423') 
         // Embedded log message
-         const logEmbed = new EmbedBuilder()
-         .setColor(0x34eb49)
-         .setTitle('Log message')
-         .setAuthor({ name: `${interaction.user.username} sent anonymous message`, iconURL: interaction.user.displayAvatarURL({ dynamic: true }) })
-         .setDescription(`message information`  )
-         .addFields(
-             { name: 'User:', value: `${interaction.user.tag}`, inline: true },
-             { name: 'ID:', value: `${interaction.user.id}`, inline: true },
-             { name: 'Pseudo name:', value: `${pseudoName}`, inline: true },
-             { name: 'From channel:', value: `${interaction.channel.name}`, inline: true },
-             { name: 'Message:', value: `${message}`, inline: true },
-         )
-         .setTimestamp();
+        const logEmbed = new EmbedBuilder()
+            .setColor(0x34eb49)
+            .setTitle('Log message')
+            .setAuthor({ name: `${interaction.user.username} sent anonymous message`, iconURL: interaction.user.displayAvatarURL({ dynamic: true }) })
+            /* .setDescription(`message information`  ) */
+            .addFields(
+                { name: 'User:', value: `${interaction.user.tag}`, inline: true },
+                { name: 'ID:', value: `${interaction.user.id}`, inline: true },
+                { name: 'Pseudo name:', value: `${pseudoName}`, inline: true },
+                { name: 'From channel:', value: `${interaction.channel.name}`, inline: true },
+                { name: 'Message:', value: `${message}` },
+            )
+            .setTimestamp();
 
      logChannel.send({ embeds: [logEmbed] });
  }
