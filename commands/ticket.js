@@ -1,7 +1,8 @@
 const {
     SlashCommandBuilder,
     ActionRowBuilder,
-    ButtonBuilder 
+    ButtonBuilder,
+    ButtonStyle 
 } = require('discord.js');
 
 module.exports = {
