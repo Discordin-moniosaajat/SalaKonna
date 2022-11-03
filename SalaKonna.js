@@ -15,7 +15,7 @@ const client = new Client({
         GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildMessages,
         GatewayIntentBits.MessageContent,
-        GatewayIntentBits.GuildPresences
+        /* GatewayIntentBits.GuildPresences */
     ],
     partials: [ /*https://discord.js.org/#/docs/discord.js/14.0.3/typedef/Partials */
         Partials.Message,

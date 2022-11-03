@@ -1,4 +1,4 @@
-// This is for handling slash commands
+// This is for handling slash commands and buttons
 
 const button1 = require("../buttons/button1.js");
 
