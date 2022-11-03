@@ -23,7 +23,7 @@ module.exports = {
                 },
                 {
                     id: interaction.member.guild.roles.everyone.id,
-                    allow: [
+                    deny: [
                         PermissionsBitField.Flags.ViewChannel,
                         PermissionsBitField.Flags.SendMessages,
                         PermissionsBitField.Flags.ReadMessageHistory
