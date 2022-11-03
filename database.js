@@ -2,6 +2,8 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const Test = require('./models/test');
+const Adjective = require ('./models/adjective');
+const Substantive = require ('./models/substantive');
 
 //database connection
 const { connect, default: mongoose } = require("mongoose");
