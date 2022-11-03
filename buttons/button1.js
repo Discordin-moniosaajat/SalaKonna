@@ -4,7 +4,7 @@ const {
 } = require('discord.js');
 
 module.exports = {
-    async execute(interaction, client) {
+    async execute(interaction) {
 
         console.log("Create Ticket -button pressed");
 
