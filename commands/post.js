@@ -48,7 +48,7 @@ module.exports = {
             .setAuthor({ name: `${interaction.user.username} sent anonymous message`, iconURL: interaction.user.displayAvatarURL({ dynamic: true }) })
             /* .setDescription(`message information`  ) */
             .addFields(
-                { name: 'User:', value: `${interaction.user.tag}`, inline: true },
+                { name: 'User:', value: `${interaction.user.tag}\n ${interaction.user}`, inline: true },
                 { name: 'ID:', value: `${interaction.user.id}`, inline: true },
                 { name: 'Pseudo name:', value: `${pseudoName}`, inline: true },
                 { name: 'From channel:', value: `${interaction.channel.name}`, inline: true },
