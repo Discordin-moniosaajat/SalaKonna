@@ -1,6 +1,18 @@
 module.exports = {
     name: "messageCreate",
     execute(interaction) {
+        const botUID = "1017345060402110484";
+
+        // The message needs to be a reply and not be sent by the bot and it has to have a mention of the bot
+        if (!interaction.reference) return;
+        if (interaction.mentions.repliedUser.id !== botUID) return;
+        if (interaction.author.id === botUID) return;
+
+        console.log(`channel: ${interaction.channel}`)
+        /* interaction.channel.messages.fetch("701574160211771462")
+            .then(message => console.log(message))
+            .catch(console.error); */
+
         /* // Ignore messages sent by the bot
         if (interaction.author == client.user) return;
 
@@ -16,6 +28,5 @@ module.exports = {
             const targetChannel = client.channels.resolve('1019734223843774554');
             targetChannel.send(interaction);
         } */
-        return
     }
 }
