@@ -16,17 +16,26 @@ const { connect, default: mongoose } = require("mongoose");
         console.log(err);
     });
 
-/*mongoose and mongodb sandbox testing
-//just ignore this
+//mongoose and mongodb sandbox testing, adding testdata to DB
 
-//create test and data
-
-const handleNewTest = async () => {
-        const test = await Test.create({
-            title: 'new test',
-            tdata: 'this is a test'
-        });
-        console.log(test);
+/*
+//adjective testdata
+const handleNewAdjective = async () => {
+    const adjective = await Adjective.create({
+        name: 'Black'
+    });
+    console.log(adjective);
 };
-handleNewTest();
+handleNewAdjective();
+*/
+
+/*
+//substantive testdata
+const handleNewSubstantive = async () => {
+    const substantive = await Substantive.create({
+        name: 'Raccoon'
+    });
+    console.log(substantive);
+};
+handleNewSubstantive();
 */
