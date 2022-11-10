@@ -1,6 +1,8 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { EmbedBuilder } = require('discord.js');
 
+require('dotenv').config();
+
 let pseudoNames = ['Blue', 'Red', 'Green', 'Yellow', 'Orange', 'Purple'];
 
 function removeUsedPseudoName(pseudoNames, pseudoName) {
@@ -40,7 +42,7 @@ module.exports = {
         });    
 
         // send interaction to log channel
-        const logChannel = client.channels.resolve('1024957345761083423') 
+        const logChannel = client.channels.resolve(process.env.LOG_CHANNEL_ID);
         // Embedded log message
         const logEmbed = new EmbedBuilder()
             .setColor(0x34eb49)
@@ -48,7 +50,7 @@ module.exports = {
             .setAuthor({ name: `${interaction.user.username} sent anonymous message`, iconURL: interaction.user.displayAvatarURL({ dynamic: true }) })
             /* .setDescription(`message information`  ) */
             .addFields(
-                { name: 'User:', value: `${interaction.user.tag}\n ${interaction.user}`, inline: true },
+                { name: 'User:', value: `${interaction.user}`, inline: true },
                 { name: 'ID:', value: `${interaction.user.id}`, inline: true },
                 { name: 'Pseudo name:', value: `${pseudoName}`, inline: true },
                 { name: 'From channel:', value: `${interaction.channel.name}`, inline: true },

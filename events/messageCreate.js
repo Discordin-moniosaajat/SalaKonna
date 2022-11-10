@@ -1,13 +1,16 @@
+require('dotenv').config();
+
+const botUID = process.env.CLIENT_ID;
+
 module.exports = {
     name: "messageCreate",
     execute(interaction) {
 
         //this needs some reformatting
-        const botUID = "1017345060402110484";
 
         // The message needs to be a reply and not be sent by the bot and it has to have a mention of the bot
         if (!interaction.reference) return;
-        if (interaction.mentions.repliedUser.id !== botUID) return;
+        if (interaction.mentions.repliedUser?.id !== botUID) return;
         if (interaction.author.id === botUID) return;
 
         console.log(`channel: ${interaction.channel}`)
