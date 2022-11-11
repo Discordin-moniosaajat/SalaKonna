@@ -39,7 +39,7 @@ module.exports = {
         interaction.reply({
             content: `You wrote:\n> ${message}`,
             //ephemeral: true //makes the reply only seen by the one using the command
-        });    
+        });
 
         // send interaction to log channel
         const logChannel = client.channels.resolve(process.env.LOG_CHANNEL_ID);
@@ -48,17 +48,16 @@ module.exports = {
             .setColor(0x34eb49)
             .setTitle('Log message')
             .setAuthor({ name: `${interaction.user.username} sent anonymous message`, iconURL: interaction.user.displayAvatarURL({ dynamic: true }) })
-            /* .setDescription(`message information`  ) */
+            .setDescription(`${message}`)
             .addFields(
                 { name: 'User:', value: `${interaction.user}`, inline: true },
                 { name: 'ID:', value: `${interaction.user.id}`, inline: true },
                 { name: 'Pseudo name:', value: `${pseudoName}`, inline: true },
                 { name: 'From channel:', value: `${interaction.channel.name}`, inline: true },
-                { name: 'Message:', value: `${message}` },
             )
             .setTimestamp();
 
-     logChannel.send({ embeds: [logEmbed] });
- }
+        logChannel.send({ embeds: [logEmbed] });
+    }
 }
     
