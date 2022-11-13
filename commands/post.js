@@ -27,19 +27,28 @@ module.exports = {
         //apparently you can also get the client from the interaction and you don't have to pass it in as a separate parameter
         const client = interaction.client;
 
-        message = interaction.options.getString("message")
+        const targetChannel = client.channels.resolve('1021710965777117184') //bottispämmi 2
+    
+        message = interaction.options.getString("message").trim();
+        if (!message) return;
 
         let pseudoName = pseudoNames[Math.floor(Math.random() * pseudoNames.length)]; // randomly picks 1 from the pseudoNames array
         pseudoNames = removeUsedPseudoName(pseudoNames, pseudoName); // removes the picked pseudoName from the pseudoNames array (using the removeUsedPseudoName function)
 
-        //send the message to a public channel
-        const targetChannel = client.channels.resolve('1021710965777117184') //bottispämmi 2
-        targetChannel.send(`**${pseudoName}** says:\n> ${message}`) //might make this an embed later on
-
-        interaction.reply({
-            content: `You wrote:\n> ${message}`,
-            //ephemeral: true //makes the reply only seen by the one using the command
-        });
+        if(message.length < 1950) {
+            interaction.reply({
+                content: `You wrote:\n> ${message}`,
+                //ephemeral: true //makes the reply only seen by the one using the command
+            });
+            targetChannel.send(`**${pseudoName}** says:\n> ${message}`);
+        } else {
+            interaction.reply({
+                content: `You wrote:\n> ${message.substring(0, 1950)}...`,
+                //ephemeral: true
+            });
+            targetChannel.send(`**${pseudoName}** says:\n> ${message.substring(0, 1950)}...`);
+            targetChannel.send(`...${message.substring(1950, 3900)}`);
+        }
 
         // send interaction to log channel
         const logChannel = client.channels.resolve(process.env.LOG_CHANNEL_ID);
