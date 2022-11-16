@@ -17,7 +17,7 @@ module.exports = {
 
         client.user.setStatus('online');
 
-        const buttonChannel = client.channels.resolve('1039497448097321050');
+        const buttonChannel = client.channels.resolve('1039497448097321050'); // tärkeät napit -channel
         buttonChannel.send({
             content: 'This button creates a ticket',
             components: [

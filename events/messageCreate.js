@@ -1,10 +1,40 @@
 require('dotenv').config();
+const { 
+    ActionRowBuilder,
+    ButtonBuilder,
+    ButtonStyle  
+} = require('discord.js');
 
 const botUID = process.env.CLIENT_ID;
 
 module.exports = {
     name: "messageCreate",
-    execute(message) {
+    async execute(message) {
+
+        // Here is a function to maintain
+        // just one active message
+        // and components in the buttons-channel
+        if (message.author.id === botUID) return;
+        if (message.channel.id === '1039497448097321050') { // tärkeät napit -channel
+
+            console.log(message);
+            const prevMessages = await message.channel.messages.fetch();
+            message.channel.bulkDelete(prevMessages);
+
+            message.channel.send({
+                content: prevMessages.first().content,
+                components: [
+                    new ActionRowBuilder()
+                        .addComponents(
+                            new ButtonBuilder()
+                                .setCustomId('button1')
+                                .setLabel('Create Ticket')
+                                .setStyle(ButtonStyle.Primary)
+                        ),
+                ]
+            })
+        }
+
         //this needs some reformatting
 
         // The message needs to be a reply and not be sent by the bot and it has to have a mention of the bot
