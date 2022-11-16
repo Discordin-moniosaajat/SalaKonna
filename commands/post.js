@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { EmbedBuilder } = require('discord.js');
+const Logfile = require('../models/log');
 
 require('dotenv').config();
 
@@ -67,6 +68,19 @@ module.exports = {
             .setTimestamp();
 
         logChannel.send({ embeds: [logEmbed] });
+
+        // send data to mongoDB
+
+        const logData = new Logfile({
+            id: interaction.user.id,
+            channel: interaction.channel.name,
+            pseudo: pseudoName ,
+        })
+        logData.save();
+
+      
+
+        console.log( logData);
     }
 }
     

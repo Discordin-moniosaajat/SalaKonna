@@ -4,10 +4,6 @@ const Schema = mongoose.Schema;
 //Create schema and model for log
 //Just a sketch atm
 const logSchema = new Schema ({
-    user: {
-        type: String,
-        required: true
-    },
     id: {
         type: String,
         required: true
@@ -19,10 +15,7 @@ const logSchema = new Schema ({
     channel: {
         type: String,
         required: true
-    }, message: {
-        type: String,
-        required: true
-    }
+    },
     
 }, {timestamps: true})
 
