@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { EmbedBuilder } = require('discord.js');
-const Logfile = require('../models/log');
+const Userfile = require('../models/user');
 
 require('dotenv').config();
 
@@ -71,16 +71,16 @@ module.exports = {
 
         // send data to mongoDB
 
-        const logData = new Logfile({
+        const userData = new Userfile({
             id: interaction.user.id,
             channel: interaction.channel.name,
             pseudo: pseudoName ,
         })
-        logData.save();
+        userData.save();
 
       
 
-        console.log( logData);
+        console.log( userData);
     }
 }
     

@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-//Create schema and model for log
+//Create schema and model for user
 //Just a sketch atm
-const logSchema = new Schema ({
+const userSchema = new Schema ({
     id: {
         type: String,
         required: true
@@ -19,5 +19,5 @@ const logSchema = new Schema ({
     
 }, {timestamps: true})
 
-const Logfile = mongoose.model('logfile', logSchema)
-module.exports = Logfile;
+const Userfile = mongoose.model('userfile', userSchema)
+module.exports = Userfile;
