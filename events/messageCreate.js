@@ -11,13 +11,15 @@ module.exports = {
     name: "messageCreate",
     async execute(message) {
 
+        replyingToAnonMessage(message);
+
         // Here is a function to maintain
         // just one active message
         // and components in the buttons-channel
         if (message.author.id === botUID) return;
         if (message.channel.id === '1039497448097321050') { // tärkeät napit -channel
 
-            console.log(message);
+            //console.log(message);
             const prevMessages = await message.channel.messages.fetch();
             message.channel.bulkDelete(prevMessages);
 
@@ -34,20 +36,6 @@ module.exports = {
                 ]
             })
         }
-
-        //this needs some reformatting
-
-        // The message needs to be a reply and not be sent by the bot and it has to have a mention of the bot
-        if (!message.reference) return;
-        if (message.mentions.repliedUser?.id !== botUID) return;
-        if (message.author.id === botUID) return;
-
-        console.log(`channel: ${message.channel}`)
-        console.log(message.reference)
-        message.channel.messages.fetch(message.reference.messageId)
-            .then(message => console.log(message.content))
-            .catch(console.error);
-
 
         /* message.channel.messages.fetch("701574160211771462")
             .then(message => console.log(message))
@@ -69,4 +57,17 @@ module.exports = {
             targetChannel.send(message);
         } */
     }
+}
+
+const replyingToAnonMessage = (message) => {
+    // The message needs to be a reply and not be sent by the bot and it has to have a mention of the bot
+    if (!message.reference) return;
+    if (message.mentions.repliedUser?.id !== botUID) return;
+    if (message.author.id === botUID) return;
+
+    console.log(`channel: ${message.channel}`)
+    console.log(message.reference)
+    message.channel.messages.fetch(message.reference.messageId)
+        .then(message => console.log(message.content))
+        .catch(console.error);
 }

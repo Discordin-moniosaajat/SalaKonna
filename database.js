@@ -8,7 +8,7 @@ const Substantive = require ('./models/substantive');
 const { connect, default: mongoose } = require("mongoose");
     mongoose.connect(process.env.DATABASETOKEN, {
     })
-    .then( () => {
+    .then(() => {
         console.log('Connected to the DB!');
     })
     .catch((err) => {

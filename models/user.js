@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 //Create schema and model for user
 //Just a sketch atm
 const userSchema = new Schema ({
-    id: {
+    uid: {
         type: String,
         required: true
     },
