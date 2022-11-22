@@ -1,16 +1,9 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { EmbedBuilder } = require('discord.js');
 const Userfile = require('../models/user');
+const generatePseudoName = require('../utils/generatePseudoName');
 
 require('dotenv').config();
-
-let pseudoNames = ['Blue', 'Red', 'Green', 'Yellow', 'Orange', 'Purple'];
-
-function removeUsedPseudoName(pseudoNames, pseudoName) {
-    return pseudoNames.filter(function(ele) {
-        return ele != pseudoName;
-    });
-};
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -19,7 +12,7 @@ module.exports = {
         .addStringOption((option) =>
             option
                 .setName("message")
-                .setDescription("content of the message you want to post")
+                .setDescription("Content of the message you want to post")
                 .setRequired(true)
         ),
     async execute(interaction) {
@@ -42,8 +35,8 @@ module.exports = {
             user.save();
         } else {
             // Create a pseudoname and save user to DB
-            let pseudoName = pseudoNames[Math.floor(Math.random() * pseudoNames.length)]; // randomly picks 1 from the pseudoNames array
-            pseudoNames = removeUsedPseudoName(pseudoNames, pseudoName); // removes the picked pseudoName from the pseudoNames array (using the removeUsedPseudoName function)
+            pseudoName = generatePseudoName();
+
             user = new Userfile({
                 uid: interaction.user.id,
                 channel: process.env.ADVICE_CHANNEL_ID,
