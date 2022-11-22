@@ -15,7 +15,7 @@ function removeUsedPseudoName(pseudoNames, pseudoName) {
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("post")
-        .setDescription("post anonymously on a public channel")
+        .setDescription("Post anonymously on a public channel")
         .addStringOption((option) =>
             option
                 .setName("message")
@@ -89,4 +89,3 @@ module.exports = {
         logChannel.send({ embeds: [logEmbed] }); 
     }
 }
-    

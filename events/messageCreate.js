@@ -6,13 +6,15 @@ const {
     EmbedBuilder  
 } = require('discord.js');
 
+const Userfile = require('../models/user');
+
 const botUID = process.env.CLIENT_ID;
 
 module.exports = {
     name: "messageCreate",
     async execute(message) {
 
-        replyingToAnonMessage(message);
+        await replyingToAnonMessage(message);
 
         // Here is a function to maintain
         // just one active message
@@ -65,15 +67,22 @@ module.exports = {
     }
 }
 
-const replyingToAnonMessage = (message) => {
-    // The message needs to be a reply and not be sent by the bot and it has to have a mention of the bot
-    if (!message.reference) return;
-    if (message.mentions.repliedUser?.id !== botUID) return;
-    if (message.author.id === botUID) return;
+const replyingToAnonMessage = async (message) => {
+    try {
+        // The message needs to be a reply and not be sent by the bot and it has to have a mention of the bot
+        if (message.reference && message.mentions.repliedUser?.id === botUID && message.author.id !== botUID) {
+            reply = await message.channel.messages.fetch(message.reference.messageId)
 
-    console.log(`channel: ${message.channel}`)
-    console.log(message.reference)
-    message.channel.messages.fetch(message.reference.messageId)
-        .then(message => console.log(message.content))
-        .catch(console.error);
+            if (reply.content.substring(0,2) !== "**") return
+            
+            pseudo = reply.content.split("**")[1]
+
+            let user = await Userfile.findOne({pseudo: pseudo});
+
+            console.log(user)
+            //...
+        }
+    } catch (error) {
+        console.log(error)
+    }
 }
