@@ -1,7 +1,8 @@
 const {
     ActionRowBuilder,
     ButtonBuilder,
-    ButtonStyle 
+    ButtonStyle,
+    EmbedBuilder 
 } = require('discord.js');
 
 module.exports = {
@@ -9,7 +10,11 @@ module.exports = {
     async execute(channel) {
         console.log("channel created");
         channel.send({
-            content: 'Button1',
+            embeds: [
+                new EmbedBuilder()
+                    .setColor(0x34eb49)
+                    .setTitle('This button creates a ticket')
+            ],
             components: [
                 new ActionRowBuilder()
                     .addComponents(

@@ -2,7 +2,8 @@ const {
     ActivityType,
     ActionRowBuilder,
     ButtonBuilder,
-    ButtonStyle  
+    ButtonStyle,
+    EmbedBuilder  
 } = require('discord.js');
 
 module.exports = {
@@ -19,7 +20,11 @@ module.exports = {
 
         const buttonChannel = client.channels.resolve('1039497448097321050'); // tärkeät napit -channel
         buttonChannel.send({
-            content: 'This button creates a ticket',
+            embeds: [
+                new EmbedBuilder()
+                    .setColor(0x34eb49)
+                    .setTitle('This button creates a ticket')
+            ],
             components: [
                 new ActionRowBuilder()
                     .addComponents(

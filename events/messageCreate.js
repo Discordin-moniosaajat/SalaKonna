@@ -2,7 +2,8 @@ require('dotenv').config();
 const { 
     ActionRowBuilder,
     ButtonBuilder,
-    ButtonStyle  
+    ButtonStyle,
+    EmbedBuilder  
 } = require('discord.js');
 
 const botUID = process.env.CLIENT_ID;
@@ -24,7 +25,12 @@ module.exports = {
             message.channel.bulkDelete(prevMessages);
 
             message.channel.send({
-                content: prevMessages.first().content,
+                // content: prevMessages.first().content,
+                embeds: [
+                    new EmbedBuilder()
+                        .setColor(0x34eb49)
+                        .setTitle(`${prevMessages.first().content}`)
+                ],
                 components: [
                     new ActionRowBuilder()
                         .addComponents(
