@@ -2,7 +2,8 @@ const {
     SlashCommandBuilder,
     ActionRowBuilder,
     ButtonBuilder,
-    ButtonStyle 
+    ButtonStyle,
+    EmbedBuilder 
 } = require('discord.js');
 
 module.exports = {
@@ -12,14 +13,19 @@ module.exports = {
     async execute(interaction) {
         console.log("ticket command used");
         interaction.reply({
-            content: 'Button1',
+            embeds: [
+                new EmbedBuilder()
+                    .setColor(0x34eb49)
+                    .setTitle('This button creates a ticket')
+            ],
             components: [
-                new ActionRowBuilder().setComponents(
-                    new ButtonBuilder()
-                        .setCustomId('button1')
-                        .setLabel('Create Ticket')
-                        .setStyle(ButtonStyle.Primary)
-                ),
+                new ActionRowBuilder()
+                    .addComponents(
+                        new ButtonBuilder()
+                            .setCustomId('button1')
+                            .setLabel('Create Ticket')
+                            .setStyle(ButtonStyle.Primary)
+                    ),
             ]
         })
     }

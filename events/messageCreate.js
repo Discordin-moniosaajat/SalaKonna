@@ -25,7 +25,6 @@ module.exports = {
             message.channel.bulkDelete(prevMessages);
 
             message.channel.send({
-                // content: prevMessages.first().content,
                 embeds: [
                     new EmbedBuilder()
                         .setColor(0x34eb49)
