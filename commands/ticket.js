@@ -12,7 +12,11 @@ module.exports = {
         .setDescription("Create a ticket channel"),
     async execute(interaction) {
         console.log("ticket command used");
-        interaction.reply({
+        interaction.reply("Ticket creation button created");
+
+        const buttonChannel = interaction.client.channels.resolve('1039497448097321050'); // tärkeät napit -channel
+        
+        buttonChannel.send({
             embeds: [
                 new EmbedBuilder()
                     .setColor(0x34eb49)
