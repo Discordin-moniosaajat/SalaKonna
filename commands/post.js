@@ -1,7 +1,7 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { EmbedBuilder } = require('discord.js');
 const Userfile = require('../models/user');
-const generatePseudoName = require('../utils/generatePseudoName');
+const generatePseudonym = require('../utils/generatePseudonym');
 
 require('dotenv').config();
 
@@ -34,13 +34,13 @@ module.exports = {
             user.updatedAt = new Date(0);
             user.save();
         } else {
-            // Create a pseudoname and save user to DB
-            pseudoName = generatePseudoName();
+            // Create a pseudonym and save user to DB
+            pseudonym = generatePseudonym();
 
             user = new Userfile({
                 uid: interaction.user.id,
                 channel: process.env.ADVICE_CHANNEL_ID,
-                pseudo: pseudoName,
+                pseudo: pseudonym,
             })
             user.save();
         }
@@ -74,7 +74,7 @@ module.exports = {
             .addFields(
                 { name: 'User:', value: `${interaction.user}`, inline: true },
                 { name: 'ID:', value: `${interaction.user.id}`, inline: true },
-                { name: 'Pseudo name:', value: `${user.pseudo}`, inline: true },
+                { name: 'Pseudonym:', value: `${user.pseudo}`, inline: true },
                 { name: 'From channel:', value: `${interaction.channel.name}`, inline: true },
             )
             .setTimestamp();

@@ -1,6 +1,6 @@
 const { generateSlug } = require('random-word-slugs')
 
-const generatePseudoName = () => {
+const generatePseudonym = () => {
     const slug = generateSlug(3, {
         format: "title",
         partsOfSpeech: ["adjective", "adjective", "noun",],
@@ -11,4 +11,4 @@ const generatePseudoName = () => {
     return slug;
 }
 
-module.exports = generatePseudoName;
+module.exports = generatePseudonym;
