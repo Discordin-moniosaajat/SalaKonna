@@ -2,9 +2,9 @@
   "name": "salakonna",
   "version": "1.0.0",
   "description": "",
-  "main": "SalaKonna.js",
+  "main": "main.js",
   "scripts": {
-    "start": "node SalaKonna.js",
+    "start": "node main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

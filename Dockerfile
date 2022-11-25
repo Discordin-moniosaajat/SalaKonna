@@ -8,4 +8,4 @@ RUN npm install
 
 COPY . .
 
-CMD ["node", "SalaKonna.js"]
+CMD ["node", "main.js"]
