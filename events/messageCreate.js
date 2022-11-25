@@ -68,8 +68,8 @@ module.exports = {
 
 const replyingToAnonMessage = async (message) => {
     try {
-        // The message needs to be a reply and not be sent by the bot and it has to have a mention of the bot
-        if (message.reference && message.mentions.repliedUser?.id === botUID && message.author.id !== botUID) {
+        // The message needs to be a reply and not be sent by a bot and it has to have a mention of the bot
+        if (message.reference && message.mentions.repliedUser?.id === botUID && !message.author.bot) {
             reply = await message.channel.messages.fetch(message.reference.messageId)
 
             if (reply.content.substring(0,2) !== "**") return
@@ -78,8 +78,9 @@ const replyingToAnonMessage = async (message) => {
 
             let user = await Userfile.findOne({pseudo: pseudo});
 
-            console.log(user)
-            //...
+            if (!user) return;
+
+            message.client.users.send(user.uid, `Someone replied to your anonymous message! \n${message.url}`);
         }
     } catch (error) {
         console.log(error)
