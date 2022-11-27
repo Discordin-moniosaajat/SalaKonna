@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
-const { EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const Userfile = require('../models/user');
 const generatePseudonym = require('../utils/generatePseudonym');
 
@@ -20,12 +19,10 @@ module.exports = {
 
         //apparently you can also get the client from the interaction and you don't have to pass it in as a separate parameter
         const client = interaction.client;
-
-        const targetChannel = client.channels.resolve(process.env.ADVICE_CHANNEL_ID);
-    
+        
         message = interaction.options.getString("message").trim();
         if (!message) return;
-
+        
         // Fetch the user from DB (if it exists)
         let user = await Userfile.findOne({uid: interaction.user.id});
         
@@ -36,7 +33,7 @@ module.exports = {
         } else {
             // Create a pseudonym and save user to DB
             pseudonym = generatePseudonym();
-
+            
             user = new Userfile({
                 uid: interaction.user.id,
                 channel: process.env.ADVICE_CHANNEL_ID,
@@ -44,19 +41,21 @@ module.exports = {
             })
             user.save();
         }
+        
+        const targetChannel = client.channels.resolve(user.channel);
 
         //Posting the message and replying to the command
 
         if (message.length < 1950) {
             interaction.reply({
                 content: `You wrote:\n> ${message}`,
-                //ephemeral: true //makes the reply only seen by the one using the command
+                ephemeral: true //makes the reply only seen by the one using the command
             });
             targetChannel.send(`**${user.pseudo}** says:\n> ${message}`);
         } else {
             interaction.reply({
                 content: `You wrote:\n> ${message.substring(0, 1950)}...`,
-                //ephemeral: true
+                ephemeral: true
             });
             targetChannel.send(`**${user.pseudo}** says:\n> ${message.substring(0, 1950)}...`);
             targetChannel.send(`...${message.substring(1950, 3900)}`);
