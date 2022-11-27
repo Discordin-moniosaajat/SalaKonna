@@ -11,15 +11,18 @@ module.exports = {
     async execute(interaction) {
         console.log("toggle tw command used");
 
+        const regularChannelId = process.env.ADVICE_CHANNEL_ID;
+        const twChannelId = process.env.TW_ADVICE_CHANNEL_ID;
+
         // Fetch the user from DB (if it exists)
         let user = await Userfile.findOne({uid: interaction.user.id});
         
         if (user) {
             // Updating the channel
-            if (user.channel === process.env.TW_ADVICE_CHANNEL_ID) {
-                user.channel = process.env.ADVICE_CHANNEL_ID;
+            if (user.channel === twChannelId) {
+                user.channel = regularChannelId;
             } else {
-                user.channel = process.env.TW_ADVICE_CHANNEL_ID;
+                user.channel = twChannelId;
             }
         } else {
             // Create a new user
@@ -27,23 +30,16 @@ module.exports = {
 
             user = new Userfile({
                 uid: interaction.user.id,
-                channel: process.env.TW_ADVICE_CHANNEL_ID,
+                channel: twChannelId,
                 pseudo: pseudonym,
             })
         }
 
         await user.save();
 
-        if (user.channel === process.env.TW_ADVICE_CHANNEL_ID) {
-            await interaction.reply({
-                content: `Your anonymous messages will now be sent to the tw advice channel`,
-                ephemeral: true
-            });
-        } else {
-            await interaction.reply({
-                content: `Your anonymous messages will now be sent to the regular advice channel`,
-                ephemeral: true
-            });
-        }
+        await interaction.reply({
+            content: `Your anonymous messages will now be sent to <#${user.channel}>. Use the command again to switch back.`,
+            ephemeral: true
+        });
     }
 }
