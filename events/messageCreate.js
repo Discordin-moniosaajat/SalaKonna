@@ -80,7 +80,7 @@ const replyingToAnonMessage = async (message) => {
 
             if (!user) return;
 
-            message.client.users.send(user.uid, `Someone replied to your anonymous message! \n${message.url}`);
+            await message.client.users.send(user.uid, `Someone replied to your anonymous message! \n${message.url}`);
         }
     } catch (error) {
         console.log(error)

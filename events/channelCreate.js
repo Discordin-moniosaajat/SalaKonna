@@ -7,7 +7,7 @@ module.exports = {
     async execute(channel) {
         console.log("channel created");
         if (channel.name.includes("ticket-")) {
-            channel.send({
+            await channel.send({
                 embeds: [
                     new EmbedBuilder()
                         .setColor(0x34eb49)

@@ -47,18 +47,18 @@ module.exports = {
         //Posting the message and replying to the command
 
         if (message.length < 1950) {
-            interaction.reply({
+            await interaction.reply({
                 content: `You wrote:\n> ${message}`,
                 ephemeral: true //makes the reply only seen by the one using the command
             });
-            targetChannel.send(`**${user.pseudo}** says:\n> ${message}`);
+            await targetChannel.send(`**${user.pseudo}** says:\n> ${message}`);
         } else {
-            interaction.reply({
+            await interaction.reply({
                 content: `You wrote:\n> ${message.substring(0, 1950)}...`,
                 ephemeral: true
             });
-            targetChannel.send(`**${user.pseudo}** says:\n> ${message.substring(0, 1950)}...`);
-            targetChannel.send(`...${message.substring(1950, 3900)}`);
+            await targetChannel.send(`**${user.pseudo}** says:\n> ${message.substring(0, 1950)}...`);
+            await targetChannel.send(`...${message.substring(1950, 3900)}`);
         }
 
         // Logging the message
@@ -78,6 +78,6 @@ module.exports = {
             )
             .setTimestamp();
 
-        logChannel.send({ embeds: [logEmbed] }); 
+        await logChannel.send({ embeds: [logEmbed] }); 
     }
 }

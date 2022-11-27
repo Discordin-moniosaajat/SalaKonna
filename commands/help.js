@@ -19,6 +19,9 @@ module.exports = {
         .setDescription("How to get started with the bot"),
     async execute(interaction) {
         console.log("help command used");
-        await interaction.reply({ embeds: [helpEmbed] });
+        await interaction.reply({
+            embeds: [helpEmbed],
+            ephemeral: true
+        });
     }
 }

@@ -16,7 +16,7 @@ module.exports = {
 
         const buttonChannel = interaction.client.channels.resolve('1039497448097321050'); // tärkeät napit -channel
         
-        buttonChannel.send({
+        await buttonChannel.send({
             embeds: [
                 new EmbedBuilder()
                     .setColor(0x34eb49)
