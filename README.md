@@ -41,7 +41,7 @@ The message will appear on another text channel under a pseudonym.
 
 (An [npm-package](https://www.npmjs.com/package/random-word-slugs/v/0.0.3) is utilized in the creation of the pseudonyms. )
 
-Alternatively if you think you message might contain something that may cause other users to feel anxiety or other unpleasant feelings you can use: /toggletw command before you use the /post command to switch channels where your message will be sent. 
+Alternatively if you think your message might contain something that may cause other users to feel anxiety or other unpleasant feelings you can use: /toggletw command before you use the /post command to switch channels where your message will be sent. 
 
 ![slashCommand-Toggletw](https://user-images.githubusercontent.com/98490914/204336894-d866a208-670d-4986-bea3-a7dc0a71a42b.png)
 
