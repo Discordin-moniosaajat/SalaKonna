@@ -12,9 +12,9 @@ module.exports = {
         .setDescription("Create a ticket channel"),
     async execute(interaction) {
         console.log("ticket command used");
-        interaction.reply("Ticket creation button created");
+        interaction.reply("Under construction, beep boop🤖");
 
-        const buttonChannel = interaction.client.channels.resolve('1039497448097321050'); // tärkeät napit -channel
+        /* const buttonChannel = interaction.client.channels.resolve('1039497448097321050'); // tärkeät napit -channel
         
         await buttonChannel.send({
             embeds: [
@@ -31,6 +31,6 @@ module.exports = {
                             .setStyle(ButtonStyle.Primary)
                     ),
             ]
-        })
+        }) */
     }
 }
