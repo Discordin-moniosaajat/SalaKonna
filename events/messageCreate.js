@@ -21,7 +21,7 @@ module.exports = {
         // just one active message
         // and components in the buttons-channel
         if (message.author.id === botUID) return;
-        if (message.channel.id === buttonChannel) { // tärkeät napit -channel
+        if (message.channel.id === buttonChannel) {
 
             //console.log(message);
             const prevMessages = await message.channel.messages.fetch();
