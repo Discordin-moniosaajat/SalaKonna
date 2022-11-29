@@ -48,13 +48,13 @@ module.exports = {
 
         if (message.length < 1950) {
             await interaction.reply({
-                content: `You wrote:\n> ${message}`,
+                content: `You wrote in <#${user.channel}>:\n> ${message}`,
                 ephemeral: true //makes the reply only seen by the one using the command
             });
             await targetChannel.send(`**${user.pseudo}** says:\n> ${message}`);
         } else {
             await interaction.reply({
-                content: `You wrote:\n> ${message.substring(0, 1950)}...`,
+                content: `You wrote in <#${user.channel}>:\n> ${message.substring(0, 1950)}...`,
                 ephemeral: true
             });
             await targetChannel.send(`**${user.pseudo}** says:\n> ${message.substring(0, 1950)}...`);
@@ -74,7 +74,7 @@ module.exports = {
                 { name: 'User:', value: `${interaction.user}`, inline: true },
                 { name: 'ID:', value: `${interaction.user.id}`, inline: true },
                 { name: 'Pseudonym:', value: `${user.pseudo}`, inline: true },
-                { name: 'From channel:', value: `${interaction.channel.name}`, inline: true },
+                { name: 'In channel:', value: `<#${user.channel}>`, inline: true },
             )
             .setTimestamp();
 

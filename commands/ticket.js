@@ -12,7 +12,10 @@ module.exports = {
         .setDescription("Create a ticket channel"),
     async execute(interaction) {
         console.log("ticket command used");
-        interaction.reply("Under construction, beep boop🤖");
+        interaction.reply({
+            content: "Under construction, beep boop🤖",
+            ephemeral: true
+        });
 
         /* const buttonChannel = interaction.client.channels.resolve('1039497448097321050'); // tärkeät napit -channel
         
