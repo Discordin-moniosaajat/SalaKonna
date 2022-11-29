@@ -55,13 +55,29 @@ Also for moderation purposes the message will also be sent to a log. Where you c
 
 ![Log](https://user-images.githubusercontent.com/98490914/204331573-e645b146-0dde-489a-8219-6799ca4dc817.png)
 
+If you wish to know or want to check what your current given pseudonym is you can do so by using the command: /check
+
+![slashCommand-check](https://user-images.githubusercontent.com/98490914/204513994-b78a6458-e76a-4740-810e-508afabedd2d.png)
+
+You will receive a reply (only visible to the user) informing you of your current pseudonym. 
+
+![reply-check](https://user-images.githubusercontent.com/98490914/204514038-8d8d3200-ed31-4447-9f87-b0c64e57e5fa.png)
+
+Also if you dislike the pseudonym that was generated for you it can be changed by using the command: /change
+
+![slashCommand-change](https://user-images.githubusercontent.com/98490914/204514117-af3c422e-855d-437e-ade9-78589035d95a.png)
+
+And like before a reply which is only visible for you will tell you your new pseudonym. 
+
+![reply-change](https://user-images.githubusercontent.com/98490914/204514174-71bf3a16-12da-4331-b835-2becf485f38d.png)
+
 If you ever forget how the bot exactly works you can always use the command: /help which will give you a brief user manual and a list of commands. 
 
 ![slashCommand-help](https://user-images.githubusercontent.com/98490914/204350972-27e37dd8-605d-42f3-bad6-0db5c8194841.png)
 
-You will receive a reply which is only visiable to you. 
+You will receive a reply which is only visible to you. 
 
-![replyToCommand-Help](https://user-images.githubusercontent.com/98490914/204351095-996d2589-8ae3-437c-8e4f-9b9019df32c4.png)
+![replyToCommand-Help](https://user-images.githubusercontent.com/98490914/204518295-99b87a9e-db21-4f7c-9878-1d6168f3c06b.png)
 
 ## Future developments
 
