@@ -9,13 +9,13 @@ SalaKonna is a Discord bot that allows its users to have conversations with each
 Follow the [guide](https://discord.com/developers/docs/intro) on how to create a bot and install it on your own channel. 
 
 Import the repository and install all the necessary dependencies (which you can find in the package.json).\
-`NOTE! MongoDB has been used as a database on this project to store and connect users with their given pseudonyms aswell as to clear the pseudonyms after 24 hours have passed. `
+`NOTE! MongoDB has been used as a database on this project to store and connect users with their given pseudonyms as well as to clear the pseudonyms after 24 hours have passed. `
 
-You will also need to create a .env file and fill it with the necessary TOKENS and IDS. Which will end up looking somewhat similiar to this: 
+You will also need to create a .env file and fill it with the necessary TOKENS and IDS. Which will end up looking somewhat similar to this: 
 
 ![env](https://user-images.githubusercontent.com/98490914/204344259-a3e348c0-6aac-4220-ab7c-b51523aebb0b.png)
 
-`NOTE! This is not meant to be a step-by-step guide on how to overall set up a discord bot on your own server nor is it about how discord bots work and are used, for that you will have to rely on other documentations like the link provided at the start. `
+`NOTE! This is not meant to be a step-by-step guide on how to overall set up a discord bot on your own server nor is it about how discord bots work and are used, for that you will have to rely on other documentation like the link provided at the start. `
 
 `Instead, this is only meant to be a demonstration of how this exact bot works. `
 
@@ -81,8 +81,6 @@ You will receive a reply which is only visible to you.
 
 ## Future developments
 
-For now, the bot works as intended, but we were testing and possibly planning on adding a ticket system for the bot. 
-
-Where you would be able to use a command and the bot would then create a button for you (which only the user who gave the command could see) by clicking this button a new text channel would appear which is only visible to him and the discord servers admins. 
+For now, the bot works as intended, but we were testing and possibly planning on adding a ticket system for the bot, where you would be able to use a command and the bot would then create a button for you (which only the user who gave the command could see) by clicking this button a new text channel would appear which is only visible to him and the discord servers admins. 
 
 And from this new text channel, a user could safely use the /post command without having to worry about typos, and also we were planning that it would be nice if all the replies to your message were sent into this new text channel so its creator wouldn't have to scroll through an active text 
