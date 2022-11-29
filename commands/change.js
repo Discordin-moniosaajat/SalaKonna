@@ -2,29 +2,32 @@ const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const Userfile = require('../models/user');
 const generatePseudonym = require('../utils/generatePseudonym');
 
-require('dotenv').config();
-
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName("check")
-        .setDescription("Check your current pseudonym"),
+        .setName("change")
+        .setDescription("Change your current pseudonym"),
     
     async execute(interaction) {
-        console.log("check command used");
+        console.log("change command used");
 
         const client = interaction.client;
 
         // Fetch the user from DB (if it exists)
         let user = await Userfile.findOne({uid: interaction.user.id});    
         
-        // Posting the message about current pseudonym
+        // changing the pseudonym and posting it on message
         if (user) {
+            //logic to change pseudo
+            newpseudonym = generatePseudonym();
+            user.pseudo = newpseudonym;
+            await user.save();
+        
             await interaction.reply({
-                content: `Your current pseudonym is:\n ${user.pseudo} \n use /change to change your pseudonym`,
+                content: `Your new pseudonym is:\n> ${user.pseudo}`,
                 ephemeral: true //makes the reply only seen by the one using the command
             });
         } else {
-             //no existing user, so lets create one and give a pseudonym
+            //no existing user, so lets create one and give a pseudo
             pseudonym = generatePseudonym();
             user = new Userfile({
                 uid: interaction.user.id,
@@ -34,7 +37,7 @@ module.exports = {
             await user.save();
 
             await interaction.reply({
-                content: `You didn't have pseudonym, your new one is:\n ${user.pseudo} \n use /change to change your pseudonym`,
+                content: `Your pseudonym is:\n> ${user.pseudo}`,
                 ephemeral: true
             });
         }
