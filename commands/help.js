@@ -9,7 +9,7 @@ const helpEmbed = new EmbedBuilder()
           value: '> Type /post command to send messages to a public text channel under a pseudonym. If your message contains sensitive content you can first use the /toggletw command to switch to a different text channel where your message will be sent.' 
         },
         { name: 'List of commands: ', 
-          value: '/help - gives you a user manual on how to use the bot \n /post - sends your messages to a text channel under a pseudonym \n /toggletw - changes the channel where your anonymous message will be sent' 
+          value: '/help - gives you a user manual on how to use the bot \n /post - sends your messages to a text channel under a pseudonym \n /toggletw - changes the channel where your anonymous message will be sent \n /check - shows your current pseudonym \n /change - changes your pseudonym' 
         },
     );
 

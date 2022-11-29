@@ -20,7 +20,7 @@ module.exports = {
         // Posting the message about current pseudonym
         if (user) {
             await interaction.reply({
-                content: `Your current pseudonym is:\n ${user.pseudo} \n use /change to change your pseudonym`,
+                content: `Your current pseudonym is:\n> ${user.pseudo} \n Use /change to change your pseudonym!`,
                 ephemeral: true //makes the reply only seen by the one using the command
             });
         } else {
@@ -34,7 +34,7 @@ module.exports = {
             await user.save();
 
             await interaction.reply({
-                content: `You didn't have pseudonym, your new one is:\n ${user.pseudo} \n use /change to change your pseudonym`,
+                content: `You didn't have pseudonym, your new one is:\n> ${user.pseudo} \n use /change to change your pseudonym!`,
                 ephemeral: true
             });
         }
