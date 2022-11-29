@@ -2,7 +2,7 @@
 
 ## What is SalaKonna for?
 
-SalaKonna is a discord bot, with the purpose of allowing its users to have conversations with each other while remaining anonymous under a pseudonym. 
+SalaKonna is a Discord bot that allows its users to have conversations with each other while remaining anonymous under a pseudonym. 
 
 ## Getting started
 
