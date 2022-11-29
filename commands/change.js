@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const Userfile = require('../models/user');
 const generatePseudonym = require('../utils/generatePseudonym');
+require('dotenv').config();
 
 module.exports = {
     data: new SlashCommandBuilder()
