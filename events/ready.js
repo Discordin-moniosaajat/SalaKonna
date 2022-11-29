@@ -12,7 +12,7 @@ module.exports = {
         console.log(`Logged in as ${client.user.tag}`)
 
         client.user.setActivity({
-            name: `and ready to anonymise you :)`,
+            name: `/post to anonymise you :)`,
             type: ActivityType.Listening
         });
 
