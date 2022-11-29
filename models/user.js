@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 //Create schema and model for user
-//Just a sketch atm
 const userSchema = new Schema ({
     uid: {
         type: String,
